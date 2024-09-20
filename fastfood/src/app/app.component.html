@@ -1,0 +1,19 @@
+<h1>Restaurant FastFood</h1>
+
+<h4>Pedidos ingresados</h4>
+<hr>
+@if (lstPedidosTotales.length > 0) {
+    @for (pedido of lstPedidosTotales; track $index) {
+        <tr>
+            <th scope="row">{{$index}}</th>
+            <td>{{pedido | json}}</td>
+        </tr>
+    }
+}
+<hr>
+<app-delivery-point></app-delivery-point>
+<hr>
+<app-pos></app-pos>
+<hr>
+<app-kitchen></app-kitchen>
+

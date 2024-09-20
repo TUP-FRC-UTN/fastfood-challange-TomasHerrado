@@ -1,0 +1,87 @@
+<!-- 
+@if (lstPedidos.length > 0)
+{
+    <hr> 
+    <h1>Cocina</h1>
+    <hr>
+    <h4>Pedidos pendientes de cocinar</h4>
+    <hr>
+    @for(pedido of lstPedidos; track $index){
+        <tr>
+          <th scope="row">{{$index}}</th>
+          <td>{{pedido.number}} {{pedido.description}}</td>
+          <td><button type="button" class="btn btn-primary" (click)="cocinar($index)">Cocinar</button></td>
+        </tr>
+    }
+}
+@if(lstPedidosCocinando.length > 0 )
+{
+    <hr>
+    <h4>Pedidos en coccion</h4>
+    <hr>
+    @for(pedido of lstPedidosCocinando; track $index){
+        <tr>
+          <th scope="row">{{$index}}</th>
+          <td>{{pedido.number}} {{pedido.description}}</td>
+          <td><button type="button" class="btn btn-primary" (click)="PedidoTerminado($index)">Pedido Terminado!!</button></td>
+        </tr>
+    }
+} -->
+<div class="container"></div>
+  <h1>Cocina</h1>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Pedidos Pendientes</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Número</th>
+            <th>Descripción</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (pedido of lstPedidosPendientes; track pedido.number; let i = $index) {
+            <tr>
+              <td>{{pedido.number}}</td>
+              <td>{{pedido.description}}</td>
+              <td>
+                <button class="btn btn-primary" (click)="cocinar(i)" [disabled]="lstPedidoEnCoccion !== null">
+                  Cocinar
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-md-6">
+      <h2>Pedido en Cocción</h2>
+      @if (lstPedidoEnCoccion) {
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Número</th>
+              <th>Descripción</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{lstPedidoEnCoccion.number}}</td>
+              <td>{{lstPedidoEnCoccion.description}}</td>
+              <td>
+                <button class="btn btn-success" (click)="finalizarPedido()">
+                  Finalizar Pedido
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      } @else {
+        <p>No hay pedidos en cocción actualmente.</p>
+      }
+    </div>
+  </div>

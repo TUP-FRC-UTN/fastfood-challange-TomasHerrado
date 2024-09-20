@@ -1,0 +1,10 @@
+
+<h1>Pedidos listos para entregar</h1>
+<hr>
+@for (pedido of lstPedidosEntregar; track $index) {
+    <tr>
+        <th scope="row">{{$index}}</th>
+        <td>{{pedido.number}} {{pedido.description}}</td>
+        <td><button type="button" class="btn btn-primary" (click)="eliminarPedido($index)">Entregar!!</button></td>
+      </tr>
+}
